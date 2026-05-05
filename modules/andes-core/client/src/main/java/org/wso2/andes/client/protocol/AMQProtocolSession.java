@@ -391,8 +391,8 @@ public class AMQProtocolSession implements AMQVersionAwareProtocolSession
         {
             id = _queueId++;
         }
-        // convert '.', '/', ':' and ';' to single '_', for spec compliance and readability
-        String localAddress = _protocolHandler.getLocalAddress().toString().replaceAll("[./:;]", "_");
+        // convert '.', '/', ':', ';', '[' and ']' to single '_', for spec compliance and readability
+        String localAddress = _protocolHandler.getLocalAddress().toString().replaceAll("[./:;\\[\\]]", "_");
         String queueName = "tmp_" + localAddress + "_" + id;
         return new AMQShortString(queueName.replaceAll("_+", "_"));
     }
